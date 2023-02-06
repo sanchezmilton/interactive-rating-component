@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [rating, setRating] = useState(0);
+  const [submit, setSubmit] = useState(false);
+
   return (
     <>
       <Head>
@@ -14,23 +18,30 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
       </Head>
       <main className='bg-very-dark-blue h-screen flex justify-center items-center'>
-        <div className='bg-dark-blue aspect-[4/3] mx-8 rounded-2xl p-6 flex flex-col gap-4'>
-          <div className='bg-medium-grey rounded-full p-3 w-fit'>
-            <img className='w-3.5' src="icon-star.svg" alt="icon star" />
-          </div>
-          <h1 className='text-white font-overpass-700 text-2xl'>How did we do?</h1>
-          <p className='text-light-grey font-overpass-400 text-sm'>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
-          <form>
-            <fieldset>
-              {Array.from(Array(5),(e, i) => {
-                return (<>
-                    <input className='hidden' type="radio" id={`r${i}`} name='rating' />
-                    <label className='' htmlFor={`r${i}`}>{i+1}</label>
-                </>)
-              })}
-            </fieldset>
-            <button>SUBMIT</button>
-          </form>
+        <div className='bg-dark-blue mx-8 rounded-2xl p-6 flex flex-col gap-4'>
+          {submit?
+          <>
+          
+          </>
+          :
+          <>
+            <div className='bg-medium-grey rounded-full p-3 w-fit'>
+              <img className='w-3.5' src="icon-star.svg" alt="icon star" />
+            </div>
+            <h1 className='text-white font-overpass-700 text-2xl'>How did we do?</h1>
+            <p className='text-light-grey font-overpass-400 text-sm'>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+            <form>
+              <fieldset className='flex justify-between'>
+                {Array.from(Array(5),(e, i) => {
+                  return (<label htmlFor={`r${i}`}>
+                      <input className='hidden peer' type="radio" id={`r${i}`} name='rating' onClick={() => setRating(i)}/>
+                      <div className='text-white bg-medium-grey rounded-full py-2 px-4 peer-checked:bg-light-grey hover:cursor-pointer hover:bg-orange duration-500'>{i+1}</div>
+                  </label>)
+                })}
+              </fieldset>
+              <button onClick={() => setSubmit(true)} className='text-white bg-orange rounded-full py-2 w-full text-cente mt-5 hover:bg-white hover:text-orange duration-500'>SUBMIT</button>
+            </form>
+          </>}
         </div>
       </main>
     </>
