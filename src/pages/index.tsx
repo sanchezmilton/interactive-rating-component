@@ -18,30 +18,39 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
       </Head>
       <main className='bg-very-dark-blue h-screen flex justify-center items-center'>
-        <div className='bg-dark-blue mx-8 rounded-2xl p-6 flex flex-col gap-4'>
-          {submit?
-          <>
-          
-          </>
-          :
-          <>
-            <div className='bg-medium-grey rounded-full p-3 w-fit'>
-              <img className='w-3.5' src="icon-star.svg" alt="icon star" />
-            </div>
-            <h1 className='text-white font-overpass-700 text-2xl'>How did we do?</h1>
-            <p className='text-light-grey font-overpass-400 text-sm'>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
-            <form>
-              <fieldset className='flex justify-between'>
-                {Array.from(Array(5),(e, i) => {
-                  return (<label htmlFor={`r${i}`}>
-                      <input className='hidden peer' type="radio" id={`r${i}`} name='rating' onClick={() => setRating(i)}/>
-                      <div className='text-white bg-medium-grey rounded-full py-2 px-4 peer-checked:bg-light-grey hover:cursor-pointer hover:bg-orange duration-500'>{i+1}</div>
-                  </label>)
-                })}
-              </fieldset>
-              <button onClick={() => setSubmit(true)} className='text-white bg-orange rounded-full py-2 w-full text-cente mt-5 hover:bg-white hover:text-orange duration-500'>SUBMIT</button>
-            </form>
-          </>}
+        <div className={`bg-dark-blue xl:w-96 w-80 font-overpass mx-8 rounded-3xl h-96 p-6 flex justify-center ${submit ? `items-center` : ``} flex-col gap-6`}>
+          {submit ?
+            <>
+              <img className='mx-16' src="illustration-thank-you.svg" alt="illustration thank you" />
+              <div className='text-orange bg-medium-grey text-center w-fit px-3 py-2 rounded-full text-sm'>You selected {rating} out of 5</div>
+              <div className='flex flex-col items-center'>
+                <h1 className='text-white text-2xl font-bold'>Thank you!</h1>
+                <p className='text-light-grey text-sm text-center mt-3 xl:mx-2'>We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!</p>
+              </div>
+            </>
+            :
+            <>
+              <div className='bg-medium-grey rounded-full p-3 w-fit'>
+                <img className='w-3.5' src="icon-star.svg" alt="icon star" />
+              </div>
+              <h1 className='text-white text-2xl font-bold'>How did we do?</h1>
+              <p className='text-light-grey text-sm'>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+              <form>
+                <fieldset className='flex justify-between'>
+                  {Array.from(Array(5), (e, i) => {
+                    return (<label htmlFor={`r${i}`}>
+                      <input className='hidden peer' type="radio" id={`r${i}`} name='rating' onClick={() => setRating(i + 1)} />
+                      <div className='text-white bg-medium-grey rounded-full py-2 px-4 peer-checked:bg-light-grey hover:cursor-pointer hover:bg-orange duration-500'>{i + 1}</div>
+                    </label>)
+                  })}
+                </fieldset>
+                <button onClick={() => setSubmit(true)} className='text-white bg-orange rounded-full py-2 w-full text-cente mt-7 hover:bg-white hover:text-orange duration-500'>SUBMIT</button>
+              </form>
+            </>}
+        </div>
+        <div className="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+          Coded by <a href="https://github.com/sanchezmilton">Milton Sánchez</a>.
         </div>
       </main>
     </>
