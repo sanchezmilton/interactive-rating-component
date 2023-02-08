@@ -21,7 +21,7 @@ export default function Home() {
         <div className={`bg-dark-blue xl:w-96 w-80 font-overpass mx-8 rounded-3xl h-96 p-6 flex justify-center ${submit ? `items-center` : ``} flex-col gap-6`}>
           {submit ?
             <>
-              <Image width='0' height='0' className='mx-16' src="illustration-thank-you.svg" alt="illustration thank you" />
+              <Image width='0' height='0' className='w-52 mx-16' src="illustration-thank-you.svg" alt="illustration thank you" />
               <div className='text-orange bg-medium-grey text-center w-fit px-3 py-2 rounded-full text-sm'>You selected {rating} out of 5</div>
               <div className='flex flex-col items-center'>
                 <h1 className='text-white text-2xl font-bold'>Thank you!</h1>
